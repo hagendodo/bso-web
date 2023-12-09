@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gacha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        font-family: "Roboto", sans-serif;
+      }
+    </style>
+  </head>
+  <body id="root" class="bg-light">
+    <nav
+      class="navbar navbar-expand-lg navbar-light d-flex justify-content-center"
+    >
+      <a class="navbar-brand text-uppercase" style="font-size: 9vw"
+        >Dimensi Web Gacha</a
+      >
+    </nav>
+    <div class="container-fluid">
+      <div class="row d-flex justify-content-center">
+        <div class="col-12">
+          <div class="row py-3">
+            <div class="col-6 mb-4">
+              <div class="card shadow" id="sticker-1">
+                <img
+                  class="card-img-top"
+                  src="https://id.portal-pokemon.com/play/resources/pokedex/img/pm/5794f0251b1180998d72d1f8568239620ff5279c.png"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h2 class="card-title text-center">Si Web</h2>
+                  <h3 class="text-center" id="se-1">2</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 mb-4">
+              <div class="card shadow" id="sticker-2">
+                <img
+                  class="card-img-top"
+                  src="https://id.portal-pokemon.com/play/resources/pokedex/img/pm/9c28defa939e230800ec0d0c421d9f82c60df77a.png"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h2 class="card-title text-center">Si Web</h2>
+                  <h3 class="text-center" id="se-2">2</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 mb-4">
+              <div class="card shadow" id="sticker-3">
+                <img
+                  class="card-img-top"
+                  src="https://id.portal-pokemon.com/play/resources/pokedex/img/pm/70f4206271b72492c9ba71d708d6183a80ba0e96.png"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h2 class="card-title text-center">Si Web</h2>
+                  <h3 class="text-center" id="se-3">2</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 mb-4">
+              <div class="card shadow" id="sticker-4">
+                <img
+                  class="card-img-top"
+                  src="https://id.portal-pokemon.com/play/resources/pokedex/img/pm/a3bc17e6215031332462cc64e59b7922ddd14b91.png"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h2 class="card-title text-center">Si Web</h2>
+                  <h3 class="text-center" id="se-4">2</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 text-center">
+              <button
+                onclick="handleClaim(this)"
+                class="btn btn-primary w-100 py-4 shadow"
+              >
+                <h1>Claim Now</h1>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .modalBackdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+    </style>
+    <div class="modalBackdrop d-none" id="bg-root"></div>
+    <div
+      class="modal fade px-4"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      data-backdrop="static"
+      data-keyboard="false"
+    >
+      <div class="modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <div id="congrats"></div>
+            <h1>Congratulations</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let st = [];
+      st[0] = {
+        element: document.getElementById("sticker-1"),
+        se: document.getElementById("se-1"),
+        stock: 2,
+        inStock: true,
+        name: "one",
+        src: "https://id.portal-pokemon.com/play/resources/pokedex/img/pm/5794f0251b1180998d72d1f8568239620ff5279c.png",
+      };
+      st[1] = {
+        element: document.getElementById("sticker-2"),
+        se: document.getElementById("se-2"),
+        stock: 2,
+        inStock: true,
+        name: "two",
+        src: "https://id.portal-pokemon.com/play/resources/pokedex/img/pm/9c28defa939e230800ec0d0c421d9f82c60df77a.png",
+      };
+      st[2] = {
+        element: document.getElementById("sticker-3"),
+        se: document.getElementById("se-3"),
+        stock: 2,
+        inStock: true,
+        name: "three",
+        src: "https://id.portal-pokemon.com/play/resources/pokedex/img/pm/70f4206271b72492c9ba71d708d6183a80ba0e96.png",
+      };
+      st[3] = {
+        element: document.getElementById("sticker-4"),
+        se: document.getElementById("se-4"),
+        stock: 2,
+        inStock: true,
+        name: "four",
+        src: "https://id.portal-pokemon.com/play/resources/pokedex/img/pm/a3bc17e6215031332462cc64e59b7922ddd14b91.png",
+      };
+
+      function printAllStock(ist) {
+        console.log("Print Stock");
+        ist.forEach((ix) => {
+          console.log(`${ix.name} - ${ix.stock}`);
+        });
+      }
+
+      function initSe(ist) {
+        ist.forEach((e) => {
+          e.se.innerText = e.stock;
+        });
+      }
+
+      initSe(st);
+
+      function handleClaim(button) {
+        button.disabled = true;
+        let endTime = Date.now() + 5000; // 5 seconds
+        let currentIndex = 0;
+
+        let interval = setInterval(() => {
+          let randomIndex = Math.floor(Math.random() * st.length);
+
+          // Find the next available sticker
+          while (st[randomIndex].stock <= 0) {
+            randomIndex = (randomIndex + 1) % st.length;
+
+            // If all stickers are out of stock, exit the loop
+            if (randomIndex === currentIndex) {
+              break;
+            }
+          }
+
+          // Remove bg-success class from all stickers
+          st.forEach((sticker) => {
+            sticker.element.classList.remove("bg-success");
+          });
+
+          // Add bg-success class to the randomly selected sticker
+          st[randomIndex].element.classList.add("bg-success");
+
+          currentIndex = (randomIndex + 1) % st.length;
+
+          if (Date.now() >= endTime) {
+            clearInterval(interval);
+            const tempSt = st[randomIndex];
+            tempSt.stock = tempSt.stock - 1;
+
+            if (tempSt.stock <= 0) {
+              tempSt.element.classList.remove("bg-success");
+              tempSt.element.classList.add("bg-danger");
+            }
+
+            tempSt.se.innerText = tempSt.stock;
+            const imgElement = document.createElement("img");
+
+            imgElement.src = tempSt.src;
+            imgElement.style.width = "100%";
+            imgElement.style.height = "auto";
+            document.getElementById("congrats").appendChild(imgElement);
+            document.getElementById("bg-root").classList.remove("d-none");
+            $("#exampleModal").modal("show");
+          }
+        }, 100); // Change the interval based on your preference
+      }
+    </script>
+  </body>
+</html>
